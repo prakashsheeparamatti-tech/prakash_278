@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dosa Date ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe0e9, #fff5d7);
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 40px 25px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .emoji {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* Hide all steps except first */
+
+        .step {
+            display: none;
+        }
+
+        #step1 {
+            display: block;
+        }
+
+        /* Buttons */
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 14px 25px;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .yes {
+            background: #28a745;
+            color: white;
+        }
+
+        .no {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Time and food buttons */
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .option {
+            background: #fff4f6;
+            color: #333;
+            border: 2px solid #ffd5dc;
+            margin: 0;
+        }
+
+        .option:hover {
+            background: #ff6f91;
+            color: white;
+            border-color: #ff6f91;
+        }
+
+        /* Final screen */
+
+        .heart {
+            font-size: 75px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .details {
+            background: #fff4f6;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .details p {
+            margin: 8px;
+        }
+
+        .final-text {
+            color: #e75480;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .card {
+                padding: 30px 18px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- STEP 1 -->
+
+        <div id="step1" class="step">
+
+            <div class="emoji">🥞</div>
+
+            <h1>Hey! 😊</h1>
+
+            <p>
+                Are you free tomorrow?
+            </p>
+
+            <p>
+                Would you like to go out for a dosa sometime?
+                It would be nice to spend some time together
+                and enjoy a good dosa. ❤️
+            </p>
+
+            <button class="yes" onclick="yesClicked()">
+                YES 😊
+            </button>
+
+            <button class="no" onclick="noClicked()">
+                NO
+            </button>
+
+            <p id="noText"></p>
+
+        </div>
+
+
+        <!-- STEP 2 : TIME -->
+
+        <div id="step2" class="step">
+
+            <div class="emoji">⏰</div>
+
+            <h2>Yay! ❤️</h2>
+
+            <p>
+                What time would you prefer?
+            </p>
+
+            <div class="options">
+
+                <button class="option"
+                        onclick="chooseTime('10:00 AM')">
+                    10:00 AM
+                </button>
+
+                <button class="option"
+                        onclick="chooseTime('12:00 PM')">
+                    12:00 PM
+                </button>
+
+                <button class="option"
+                        onclick="chooseTime('5:00 PM')">
+                    5:00 PM
+                </button>
+
+                <button class="option"
+                        onclick="chooseTime('7:00 PM')">
+                    7:00 PM
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 : FOOD -->
+
+        <div id="step3" class="step">
+
+            <div class="emoji">🍽️</div>
+
+            <h2>One more thing! 😋</h2>
+
+            <p>
+                What would you like to eat?
+            </p>
+
+            <p>
+                <strong>You choose! ❤️</strong>
+            </p>
+
+            <div class="options">
+
+                <button class="option"
+                        onclick="chooseFood('Masala Dosa 🥞')">
+                    🥞 Masala Dosa
+                </button>
+
+                <button class="option"
+                        onclick="chooseFood('Plain Dosa 🥞')">
+                    🥞 Plain Dosa
+                </button>
+
+                <button class="option"
+                        onclick="chooseFood('Pizza 🍕')">
+                    🍕 Pizza
+                </button>
+
+                <button class="option"
+                        onclick="chooseFood('Burger 🍔')">
+                    🍔 Burger
+                </button>
+
+                <button class="option"
+                        onclick="chooseFood('Idli & Vada 🍽️')">
+                    🍽️ Idli & Vada
+                </button>
+
+                <button class="option"
+                        onclick="chooseFood('Your Choice ❤️')">
+                    ❤️ Your Choice
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 4 : FINAL -->
+
+        <div id="step4" class="step">
+
+            <div class="heart">❤️</div>
+
+            <h1>Perfect! 😊</h1>
+
+            <p class="final-text">
+                Our plan is ready!
+            </p>
+
+            <div class="details">
+
+                <p>
+                    📅 <strong>Tomorrow</strong>
+                </p>
+
+                <p>
+                    ⏰ <strong id="selectedTime"></strong>
+                </p>
+
+                <p>
+                    🍽️ <strong id="selectedFood"></strong>
+                </p>
+
+            </div>
+
+            <p>
+                Thank you for coming with me! ❤️
+            </p>
+
+            <p>
+                I'm looking forward to it. 😊🥞✨
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let selectedTime = "";
+        let selectedFood = "";
+
+
+        // YES button
+
+        function yesClicked() {
+
+            document.getElementById("step1").style.display = "none";
+
+            document.getElementById("step2").style.display = "block";
+        }
+
+
+        // NO button
+
+        function noClicked() {
+
+            document.getElementById("noText").innerText =
+                "No worries! Maybe another day 😊";
+        }
+
+
+        // Time selection
+
+        function chooseTime(time) {
+
+            selectedTime = time;
+
+            document.getElementById("step2").style.display = "none";
+
+            document.getElementById("step3").style.display = "block";
+        }
+
+
+        // Food selection
+
+        function chooseFood(food) {
+
+            selectedFood = food;
+
+            document.getElementById("step3").style.display = "none";
+
+            document.getElementById("step4").style.display = "block";
+
+            document.getElementById("selectedTime").innerText =
+                selectedTime;
+
+            document.getElementById("selectedFood").innerText =
+                selectedFood;
+        }
+
+    </script>
+
+</body>
+</html>
